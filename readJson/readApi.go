@@ -37,13 +37,15 @@ func ReadCasesApi(search string) []byte {
 	//https://www.thepolyglotdeveloper.com/2020/02/interacting-with-a-graphql-api-with-golang/
 	jsonValue, _ := json.Marshal(jsonData)
 	request, err := http.NewRequest("POST", constants.COVID_CASES_API, bytes.NewBuffer(jsonValue))
+	if err != nil {
+		fmt.Printf("Error in sending request to GraphQL %s", http.StatusBadRequest)
+	}
 	client := &http.Client{Timeout: time.Second * 10}
 	response, err := client.Do(request)
 	if err != nil {
 		fmt.Printf("The HTTP request failed with error %s\n", err)
 	}
 	defer response.Body.Close()
-
 	data, _ := ioutil.ReadAll(response.Body)
 
 	return data
