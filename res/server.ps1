@@ -1,1 +1,0 @@
-ssh -i cloud.pem ubuntu@10.212.137.156
