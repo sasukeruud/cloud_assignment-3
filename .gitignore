@@ -1,7 +1,7 @@
 #no executable files
 *.exe
 /src/res/*
-res
+res/*
 
 #firebase key
 auth.json
