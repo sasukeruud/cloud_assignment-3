@@ -1,0 +1,9 @@
+#no executable files
+*.exe
+/src/res/*
+
+#firebase key
+auth.json
+
+#coverge files
+*.out
