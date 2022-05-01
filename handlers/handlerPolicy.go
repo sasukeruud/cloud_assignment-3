@@ -15,7 +15,7 @@ func PolicyHandler(w http.ResponseWriter, r *http.Request) {
 	case http.MethodGet:
 		getPolicyRequest(w, r)
 	default:
-		http.Error(w, "Only http GET request is implemented", http.StatusOK)
+		http.Error(w, "Only http GET request is implemented", http.StatusMethodNotAllowed)
 	}
 }
 

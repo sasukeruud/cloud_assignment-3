@@ -134,15 +134,18 @@ func deleteNotification(w http.ResponseWriter, r *http.Request) {
 
 	if len(elem) >= 4 {
 		delete := elem[4]
+
 		res, err := client.Collection(collection).Doc(delete).Delete(ctx)
 		if err != nil {
 			http.Error(w, "error when trying to delete", http.StatusAccepted)
 		}
 
-		fmt.Fprintf(w, "webhook was deleted at: "+res.UpdateTime.GoString())
+		if res != nil {
+			http.Error(w, "webhook deleted was: "+delete, http.StatusOK)
+		}
 
 	} else {
-
+		http.Error(w, "wrong length parameters", http.StatusBadRequest)
 	}
 }
 
@@ -316,7 +319,6 @@ Function to get information about how many times a country have been called on b
 Data is store on firebase.*/
 func getCountry(search string) []byte {
 	var country structs.Country_calls
-
 	iter := client.Collection(coll).Documents(ctx)
 
 	for {

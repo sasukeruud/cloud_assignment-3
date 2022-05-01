@@ -43,11 +43,8 @@ func statusHandlerGet(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.Header().Set("content-type", "application/json")
-
 	encoder := json.NewEncoder(w)
-
 	err := encoder.Encode(status)
-
 	if err != nil {
 		http.Error(w, "error during encoding", http.StatusInternalServerError)
 	}
