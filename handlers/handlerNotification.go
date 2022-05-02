@@ -353,7 +353,7 @@ func getCountry(search string) []byte {
 
 	jsonString, err := json.Marshal(country)
 	if err != nil {
-
+		fmt.Println("Error when marshaling")
 	}
 
 	return jsonString
